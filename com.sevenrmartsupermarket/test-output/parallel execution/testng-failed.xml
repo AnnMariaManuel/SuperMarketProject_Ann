@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [parallel execution]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.sevenrmartsupermarket.listners.ExtentReporter"/>
+  </listeners>
+  <test parallel="tests" name="Smoke Execution(failed)">
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.LoginTest">
+        <methods>
+          <include name="verifyStaffLogin"/>
+          <include name="launchBrowser"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.LoginTest -->
+    </classes>
+  </test> <!-- Smoke Execution(failed) -->
+  <test parallel="tests" name="Sanity Execution(failed)">
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.AdminUserTest">
+        <methods>
+          <include name="launchBrowser"/>
+          <include name="verifyUserDeactivation"/>
+          <include name="verifyUserActivation"/>
+          <include name="verifyAdminUserCreation"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.AdminUserTest -->
+    </classes>
+  </test> <!-- Sanity Execution(failed) -->
+</suite> <!-- Failed suite [parallel execution] -->

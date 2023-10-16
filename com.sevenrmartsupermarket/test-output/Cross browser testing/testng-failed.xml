@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [Cross browser testing]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.sevenrmartsupermarket.listners.ExtentReporter"/>
+  </listeners>
+  <test parallel="tests" name="Executing in FireFox(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.AdminUserTest">
+        <methods>
+          <include name="loginUserCheck"/>
+          <include name="launchBrowser"/>
+          <include name="verifyEditUser"/>
+          <include name="verifyUserDeactivation"/>
+          <include name="verifyUserActivation"/>
+          <include name="verifyAdminUserCreation"/>
+          <include name="verifyDeleteUser"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.AdminUserTest -->
+      <class name="com.sevenrmartsupermarket.tests.LoginTest">
+        <methods>
+          <include name="verifyStaffLogin"/>
+          <include name="launchBrowser"/>
+          <include name="verifyInvalidLoginErrorMessage"/>
+          <include name="verifyLoginFunctionality"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.LoginTest -->
+    </classes>
+  </test> <!-- Executing in FireFox(failed) -->
+  <test parallel="tests" name="Executing in Chrome(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.AdminUserTest">
+        <methods>
+          <include name="launchBrowser"/>
+          <include name="verifyUserDeactivation"/>
+          <include name="verifyUserActivation"/>
+          <include name="verifyAdminUserCreation"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.AdminUserTest -->
+      <class name="com.sevenrmartsupermarket.tests.LoginTest">
+        <methods>
+          <include name="verifyStaffLogin"/>
+          <include name="launchBrowser"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.LoginTest -->
+    </classes>
+  </test> <!-- Executing in Chrome(failed) -->
+  <test parallel="tests" name="Executing in Edge(failed)">
+    <parameter name="browser" value="edge"/>
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.AdminUserTest">
+        <methods>
+          <include name="launchBrowser"/>
+          <include name="verifyUserDeactivation"/>
+          <include name="verifyUserActivation"/>
+          <include name="verifyAdminUserCreation"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.AdminUserTest -->
+      <class name="com.sevenrmartsupermarket.tests.LoginTest">
+        <methods>
+          <include name="verifyStaffLogin"/>
+          <include name="launchBrowser"/>
+          <include name="terminateSession"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.LoginTest -->
+    </classes>
+  </test> <!-- Executing in Edge(failed) -->
+</suite> <!-- Failed suite [Cross browser testing] -->
