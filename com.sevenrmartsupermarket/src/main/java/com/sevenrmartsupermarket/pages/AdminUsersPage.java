@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -317,8 +318,11 @@ public class AdminUsersPage {
 	public void paginationCheck(int page) 
 	{
 		pageutility = new PageUtility(driver);
-		WebElement pageNumber=driver.findElement(By.xpath("//ul[@class='pagination pagination-sm m-0 float-right']/li["+page+"]"));
-		pageutility.scrollAndClick(pageNumber);
+		WebElement pageNumber=driver.findElement(By.xpath("//ul[@class='pagination pagination-sm m-0 float-right']/li["+page+"]//a"));
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView();", pageNumber);
+		js.executeScript("arguments[0].click();", pageNumber);
+		//pageutility.scrollAndClick(pageNumber);
 		
 		//String color =pageNumber.getCssValue("background-color");
 		//String pagenum=pageNumber.getText();

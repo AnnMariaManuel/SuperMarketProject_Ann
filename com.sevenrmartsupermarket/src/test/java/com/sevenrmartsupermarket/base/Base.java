@@ -94,6 +94,6 @@ public class Base
 		{
 			screenshot.takeScreenShot(driver, itestresult.getName());  //itestresult.getName() is used to get test case name 
 		}
-		driver.quit();
+		//driver.quit();
 	}
 }
