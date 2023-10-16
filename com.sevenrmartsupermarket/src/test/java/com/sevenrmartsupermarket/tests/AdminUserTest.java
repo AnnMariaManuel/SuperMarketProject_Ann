@@ -122,7 +122,7 @@ public class AdminUserTest extends Base {
 		Assert.assertFalse(adminuserspage.adminUsersReset("Anne"),"Page not Reset");
 	}
 	
-	@Test(priority = 8,enabled = false)
+	@Test(priority = 8,enabled = true)
 	public void verifyPagination() 
 	{
 		loginpage = new LoginPage(driver);
