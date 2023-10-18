@@ -33,7 +33,7 @@ public class LoginPage {
 			properties.load(ip); // to read the config.properties file
 		} catch (Exception e) {
 			e.printStackTrace();// whole exception definition will come in console
-			System.out.println("File not found ");
+			System.out.println("File not found!");
 		}
 	}
 	
