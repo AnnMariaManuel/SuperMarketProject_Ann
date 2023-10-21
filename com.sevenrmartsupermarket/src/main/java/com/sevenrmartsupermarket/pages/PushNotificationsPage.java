@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.sevenrmartsupermarket.utilities.WaitUtility;
+
 public class PushNotificationsPage {
 
 	WebDriver driver;
@@ -17,8 +19,10 @@ public class PushNotificationsPage {
 	WebElement descriptionfield;
 	@FindBy(xpath = "//button[@name='create']")
 	WebElement sendButton;
-	@FindBy(xpath="//a[contains(text(),'Reset')]")
+	@FindBy(xpath = "//a[contains(text(),'Reset')]")
 	WebElement resetButton;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement successAlertmessage;
 
 	public PushNotificationsPage(WebDriver driver) {
 		this.driver = driver;
@@ -41,39 +45,39 @@ public class PushNotificationsPage {
 	public void clickOnSendButton() {
 		sendButton.click();
 	}
-	
-	public void sendPushNotification(String title, String description)
-	{
+
+	public void sendPushNotification(String title, String description) {
 		clickOnPushNotification();
 		enterTitle(title);
 		enterDescription(description);
 		clickOnSendButton();
 	}
-	
-	public String restPushNotifications(String title,String description )
-	{
+
+	public String sendPushNotificationSuccessMessage() {
+
+		WaitUtility waitutility = new WaitUtility(driver);
+		waitutility.waitforElementToBeVisible("//div[@class='alert alert-success alert-dismissible']//button", 30);
+		String message = successAlertmessage.getText();
+		return message;
+	}
+
+	public String restPushNotifications(String title, String description) {
 		clickOnPushNotification();
 		enterTitle(title);
 		enterDescription(description);
 		resetButton.click();
-		String titlePlaceholder=titlefield.getAttribute("placeholder");
-		String descriptionPlaceholder=descriptionfield.getAttribute("placeholder");
-		System.out.println(titlePlaceholder);
-		System.out.println(descriptionPlaceholder);
-		String actualResult;
-		
-		if((titlePlaceholder.equals("Enter Title"))&&(descriptionPlaceholder.equals("Enter Description")))
-		{
-			actualResult="Reset Successfull";
+		String titlePlaceholder = titlefield.getAttribute("placeholder");
+		String descriptionPlaceholder = descriptionfield.getAttribute("placeholder");
+        String actualResult;
+
+		if ((titlePlaceholder.equals("Enter Title")) && (descriptionPlaceholder.equals("Enter Description"))) {
+			actualResult = "Reset Successfull";
+		} else {
+			actualResult = "Reset not Successfull";
 		}
-		else
-		{
-			actualResult="Reset not Successfull";
-		}
-		
+
 		return actualResult;
-		
+
 	}
-	
 
 }

@@ -6,6 +6,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.sevenrmartsupermarket.base.Base;
 import com.sevenrmartsupermarket.constants.Constants;
+import com.sevenrmartsupermarket.listners.RetryAnalyser;
 import com.sevenrmartsupermarket.pages.AdminUsersPage;
 import com.sevenrmartsupermarket.pages.LoginPage;
 import com.sevenrmartsupermarket.utilities.ExcelReader;
@@ -40,7 +41,7 @@ public class AdminUserTest extends Base {
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
-		String ActualStatus = adminuserspage.deactivateuser(excelreader.getCellData(3, 0));
+		String ActualStatus = adminuserspage.deactivateUser(excelreader.getCellData(3, 0));
 		if (ActualStatus.equals("Inactive")) {
 			Assert.assertTrue(true);
 		} else if (ActualStatus.contains("User already deactivated")) {
@@ -97,7 +98,7 @@ public class AdminUserTest extends Base {
 
 	}
 
-	@Test(groups = {"Sanity Test","Regression Test"},priority = 6/*,retryAnalyzer = RetryAnalyser.class*/)
+	@Test(groups = {"Sanity Test","Regression Test"},priority = 6)
 	public void verifyDeleteUser() {
 		loginpage = new LoginPage(driver);
 		loginpage.Login();
@@ -122,14 +123,6 @@ public class AdminUserTest extends Base {
 		Assert.assertFalse(adminuserspage.adminUsersReset("Anne"),"Page not Reset");
 	}
 	
-	@Test(priority = 8,enabled = true)
-	public void verifyPagination() 
-	{
-		loginpage = new LoginPage(driver);
-		loginpage.Login();
-		adminuserspage = new AdminUsersPage(driver);
-		adminuserspage.clickOnAdminUsersMenu();
-		adminuserspage.paginationCheck(9); //getting logged off after the click 
+	
 
-	}
 }

@@ -1,6 +1,6 @@
 package com.sevenrmartsupermarket.tests;
 
-import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenrmartsupermarket.base.Base;
@@ -8,30 +8,28 @@ import com.sevenrmartsupermarket.pages.LoginPage;
 import com.sevenrmartsupermarket.pages.ManageExpensePage;
 
 public class ManageExpenseTest extends Base {
-	
-	
-	
+
 	ManageExpensePage manageexpensepage;
 	LoginPage loginpage;
-	
-	@Test
-	public void verifyManageExpenses()
-	{
-		loginpage=new LoginPage(driver);
+
+	@Test(priority = 1)
+	public void verifyAddExpenses() {
+		loginpage = new LoginPage(driver);
 		loginpage.Login();
-		manageexpensepage=new ManageExpensePage(driver);
-		manageexpensepage.clickOnManageExpenseMenu();
-		manageexpensepage.newButtonClick();
-		manageexpensepage.enterUserType("Staff(Staff)");
-		manageexpensepage.enterDate("16-10-2023");
-		manageexpensepage.selectCategory("zebra");
-		manageexpensepage.selectOrderID("6");
-		manageexpensepage.selectPurchaseID("7");
-		manageexpensepage.selectExpensetype("Debit Bank");
-		manageexpensepage.enterReamrks("This is a remark");
-		manageexpensepage.chooseFileToUpload();
-		
+		manageexpensepage = new ManageExpensePage(driver);
+		String actualSuccessMessage = manageexpensepage.addExpense("Admin(Admin)", "22-10-2024", "abc", "7", "8",
+				"Debit Cash", "200", "Adding expense test", "SampleImage");
+		Assert.assertTrue(actualSuccessMessage.contains("Expense Record Created Successfully"), "Test case failed ");
 	}
-	
+
+	@Test(priority = 2)
+	public void verifyCancel() {
+		loginpage = new LoginPage(driver);
+		loginpage.Login();
+		manageexpensepage = new ManageExpensePage(driver);
+
+		Assert.assertFalse(manageexpensepage.clickOnCancelButton(), "Cancel button is not working as expected");
+
+	}
 
 }

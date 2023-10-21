@@ -1,18 +1,14 @@
 package com.sevenrmartsupermarket.pages;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sevenrmartsupermarket.constants.Constants;
 import com.sevenrmartsupermarket.utilities.GeneralUtility;
@@ -27,43 +23,44 @@ public class AdminUsersPage {
 	WaitUtility waitutility;
 
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-users']//following-sibling::p")
-	WebElement adminUserMenu;
+	private WebElement adminUserMenu;
 	@FindBy(xpath = "//div[@class='col-sm-12']/a[1]")
-	WebElement newButton;
+	private WebElement newButton;
 	@FindBy(id = "username")
-	WebElement username_field;
+	private WebElement userNameField;
 	@FindBy(id = "password")
-	WebElement password_field;
+	private WebElement passWordField;
 	@FindBy(id = "user_type")
-	WebElement usertype_dropdown;
+	private WebElement userTypeDropdown;
 	@FindBy(xpath = "//button[@type='submit' and @name='Create']")
-	WebElement savebutton;
+	private WebElement saveButton;
 	@FindBy(xpath = "//button[@type='submit' and @name='Create']/following-sibling::a")
-	WebElement resetbutton;
+	private WebElement resetButton;
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
-	WebElement message;
+	private WebElement message;
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
-	List<WebElement> namesList;
+	private List<WebElement> namesList;
 	@FindBy(id = "username")
-	WebElement usernameedit;
+	private WebElement usernameedit;
 	@FindBy(id = "password")
-	WebElement passwordedit;
+	private WebElement passwordedit;
 	@FindBy(id = "user_type")
-	WebElement usertypeedit;
+	private WebElement usertypeedit;
 	@FindBy(name = "Update")
-	WebElement updatebutton;
-	@FindBy(xpath="//a[@onclick='click_button(2)']")
-	WebElement searchButton;
-	@FindBy(xpath="//button[@class='close']")
-	WebElement alertCloseIcon;
-	@FindBy(xpath="//input[@id='un']")
-	WebElement userNameSearch;
-	@FindBy(xpath="//button[@name='Search']")
-	WebElement userSearch;
-	@FindBy(xpath="//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
-	WebElement userNamesearchResult;
-	@FindBy(xpath="//div[@class='col-sm-12']//a[3]")
-	WebElement editpagereset;
+	private WebElement updatebutton;
+	@FindBy(xpath = "//a[@onclick='click_button(2)']")
+	private WebElement searchButton;
+	@FindBy(xpath = "//button[@class='close']")
+	private WebElement alertCloseIcon;
+	@FindBy(xpath = "//input[@id='un']")
+	private WebElement userNameSearch;
+	@FindBy(xpath = "//button[@name='Search']")
+	private WebElement userSearch;
+	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
+	private WebElement userNamesearchResult;
+	@FindBy(xpath = "//div[@class='col-sm-12']//a[3]")
+	private WebElement editpagereset;
+
 	public AdminUsersPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -73,46 +70,43 @@ public class AdminUsersPage {
 		adminUserMenu.click();
 	}
 
-	public void clickonNewButton() {
+	public void clickOnNewButton() {
 		newButton.click();
 	}
 
 	public void enterUserName(String userName) {
-		username_field.sendKeys(userName);
+		userNameField.sendKeys(userName);
 	}
 
 	public void enterPassword(String passWord) {
-		password_field.sendKeys(passWord);
+		passWordField.sendKeys(passWord);
 	}
 
 	public void enterUserType(String value) {
 		pageutility = new PageUtility(driver);
-		usertype_dropdown.click();
+		userTypeDropdown.click();
+		pageutility.select_ByVisibleText(userTypeDropdown, value);
 
-		// Select select = new Select(usertype_dropdown);
-		// select.selectByVisibleText("Admin");
-		pageutility.select_ByVisibleText(usertype_dropdown, value);
-		// pageutility.select_ByIndex(usertype_dropdown, 1);
 	}
 
-	public void clickSaveButton() {
+	public void clickOnSaveButton() {
 		waitutility = new WaitUtility(driver);
-		waitutility.waitForElementToBeClickable(savebutton, 20l);
-		savebutton.click();
+		waitutility.waitForElementToBeClickable(saveButton, 20l);
+		saveButton.click();
 	}
 
-	public void clickResetButton() {
-		resetbutton.click();
+	public void clickOnResetButton() {
+		resetButton.click();
 
 	}
 
 	public void createAdminUser(String userName, String passWord, String value) {
 		clickOnAdminUsersMenu();
-		clickonNewButton();
+		clickOnNewButton();
 		enterUserName(userName);
 		enterPassword(passWord);
 		enterUserType(value);
-		clickSaveButton();
+		clickOnSaveButton();
 
 	}
 
@@ -122,7 +116,7 @@ public class AdminUsersPage {
 
 	}
 
-	public String deactivateuser(String personName) {
+	public String deactivateUser(String personName) {
 		pageutility = new PageUtility(driver);
 		int index = 0;
 		generalutility = new GeneralUtility();
@@ -136,9 +130,9 @@ public class AdminUsersPage {
 			index++;
 		}
 
-		WebElement statusofUser = driver.findElement(By
+		WebElement statusOfUser = driver.findElement(By
 				.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[3]"));
-		if (statusofUser.getText().equals(Constants.activatedUserSatus)) {
+		if (statusOfUser.getText().equals(Constants.activatedUserSatus)) {
 			WebElement deactivateButton = driver
 					.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr["
 							+ index + "]/td[5]/a[1]"));
@@ -171,14 +165,12 @@ public class AdminUsersPage {
 
 		WebElement statusOfUser = driver.findElement(By
 				.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[3]"));
-		if (statusOfUser.getText().equals(Constants.deactivatedUserSatus)) 
-		{
+		if (statusOfUser.getText().equals(Constants.deactivatedUserSatus)) {
 			pageutility.scrollAndClick(activateButton);
-			WebElement activeStatus = driver.findElement(By
-					.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[3]"));
+			WebElement activeStatus = driver.findElement(By.xpath(
+					"//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[3]"));
 			return activeStatus.getText();
-		} 
-		else {
+		} else {
 			return "User already Active ";
 		}
 
@@ -202,17 +194,16 @@ public class AdminUsersPage {
 		WebElement editButton = driver.findElement(By.xpath(
 				"//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]/a[2]"));
 		pageutility.scrollAndClick(editButton);
-		
-		
+
 	}
 
 	public void editUserName(String userNameEdit) {
-		
+
 		usernameedit.click();
 		usernameedit.clear();
 		usernameedit.sendKeys(userNameEdit);
 		clickOnUpdateButton();
-		
+
 	}
 
 	public String editUserNameSuccessMessage() {
@@ -221,8 +212,6 @@ public class AdminUsersPage {
 		String editUserSuccesMessage = message.getText();
 		return editUserSuccesMessage;
 	}
-	
-
 
 	public void editPassword(String passWordEdit) {
 		passwordedit.click();
@@ -231,7 +220,7 @@ public class AdminUsersPage {
 		clickOnUpdateButton();
 	}
 
-	public void editUSerType(String userTypeEdit) {
+	public void editUserType(String userTypeEdit) {
 		PageUtility pageutility = new PageUtility(driver);
 		usertypeedit.click();
 		pageutility.select_ByVisibleText(usertypeedit, userTypeEdit);
@@ -246,35 +235,29 @@ public class AdminUsersPage {
 
 		editUserName(userNameEdit);
 		editPassword(passWordEdit);
-		editUSerType(dropDownValueEdit);
+		editUserType(dropDownValueEdit);
 		clickOnUpdateButton();
 
 	}
-	public void alertClose()
-	{
+
+	public void alertClose() {
 		alertCloseIcon.click();
 	}
-	
-	public boolean searchUser(String userName)
-	{
+
+	public boolean searchUser(String userName) {
 		searchButton.click();
 		userNameSearch.click();
 		userNameSearch.sendKeys(userName);
 		userSearch.click();
-		if (userName.equals(userNamesearchResult.getText()))
-				{
-			       return true;
-				}
-		else
-		{
+		if (userName.equals(userNamesearchResult.getText())) {
+			return true;
+		} else {
 			return false;
 		}
-	
-		
+
 	}
-	
-	public String deleteUser(String personName)
-	{
+
+	public String deleteUser(String personName) {
 		pageutility = new PageUtility(driver);
 		int index = 0;
 		generalutility = new GeneralUtility();
@@ -287,46 +270,30 @@ public class AdminUsersPage {
 			}
 			index++;
 		}
-		
+
 		WebElement deleteButton = driver.findElement(By.xpath(
 				"//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]/td[5]/a[3]"));
-		
+
 		deleteButton.click();
 		pageutility.alertAccept();
 		return deleteUsermessage();
-		
+
 	}
-	
-	public String deleteUsermessage()
-	{
+
+	public String deleteUsermessage() {
 		WaitUtility waitutility = new WaitUtility(driver);
 		waitutility.waitforElementToBeVisible("//button[@class='close']", 30);
 		return message.getText();
 	}
-	
-	public void clickeditResetButton()
-	{
-	   editpagereset.click();
+
+	public void clickEditResetButton() {
+		editpagereset.click();
 	}
-	public boolean adminUsersReset(String userName)
-	{
+
+	public boolean adminUsersReset(String userName) {
 		editUserClick(userName);
-		clickeditResetButton();
+		clickEditResetButton();
 		return usernameedit.isDisplayed();
 	}
 
-	public void paginationCheck(int page) 
-	{
-		pageutility = new PageUtility(driver);
-		WebElement pageNumber=driver.findElement(By.xpath("//ul[@class='pagination pagination-sm m-0 float-right']/li["+page+"]//a"));
-		JavascriptExecutor js=(JavascriptExecutor)driver;
-		js.executeScript("arguments[0].scrollIntoView();", pageNumber);
-		js.executeScript("arguments[0].click();", pageNumber);
-		//pageutility.scrollAndClick(pageNumber);
-		
-		//String color =pageNumber.getCssValue("background-color");
-		//String pagenum=pageNumber.getText();
-		//System.out.println(color);
-		//System.out.println(pagenum);
-	}
 }

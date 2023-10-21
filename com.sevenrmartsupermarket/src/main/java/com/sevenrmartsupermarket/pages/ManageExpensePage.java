@@ -5,108 +5,149 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.sevenrmartsupermarket.utilities.GeneralUtility;
+import com.sevenrmartsupermarket.utilities.ImageUpload;
 import com.sevenrmartsupermarket.utilities.PageUtility;
+import com.sevenrmartsupermarket.utilities.WaitUtility;
 
-public class ManageExpensePage 
-
+public class ManageExpensePage
 
 {
 	WebDriver driver;
 	LoginPage loginpage;
-	
-	@FindBy(xpath="//ul[@class='nav nav-pills nav-sidebar flex-column']//li[4]")
+
+	@FindBy(xpath = "//ul[@class='nav nav-pills nav-sidebar flex-column']//li[4]")
 	WebElement manageExpenseExpand;
-	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-expense']")
+	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-expense']")
 	WebElement manageExpenseMenu;
-	@FindBy(xpath="//div[@class='col-sm-12']//a[1]")
+	@FindBy(xpath = "//div[@class='col-sm-12']//a[1]")
 	WebElement newButton;
-	@FindBy(id="user_id")
+	@FindBy(id = "user_id")
 	WebElement userDropDown;
-	@FindBy(id="ex_date")
+	@FindBy(id = "ex_date")
 	WebElement dateSelector;
-	@FindBy(id="ex_cat")
+	@FindBy(id = "ex_cat")
 	WebElement categoryDropDown;
-	@FindBy(id="order_id")
+	@FindBy(id = "order_id")
 	WebElement orderIdDropDown;
-	@FindBy(id="purchase_id")
+	@FindBy(id = "purchase_id")
 	WebElement purchaseIdDropDown;
-	@FindBy(id="ex_type")
+	@FindBy(id = "ex_type")
 	WebElement expenseTypeDropDown;
-	@FindBy(id="amount")
+	@FindBy(id = "amount")
 	WebElement amount;
-	@FindBy(name="remarks")
+	@FindBy(name = "remarks")
 	WebElement remark;
-	@FindBy(xpath="//input[@type='file']")
+	@FindBy(xpath = "//input[@type='file']")
 	WebElement chooseFile;
-	@FindBy(xpath="//button[@type='submit']")
+	@FindBy(xpath = "//button[@type='submit']")
 	WebElement saveButton;
-	@FindBy(xpath="//div[@class='card-footer']//a")
+	@FindBy(xpath = "//div[@class='card-footer']//a")
 	WebElement cancelButton;
-	
-	
-	public ManageExpensePage(WebDriver driver)
-	{
-		this.driver=driver;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement expenseRecordCreateMessage;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']//button")
+	WebElement alertCloseIcon;
+
+	public ManageExpensePage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	public void clickOnManageExpenseMenu()
-	{
+
+	public void clickOnManageExpenseMenu() {
 		manageExpenseExpand.click();
 		manageExpenseMenu.click();
 	}
-	
-	public void newButtonClick()
-	{
+
+	public void newButtonClick() {
 		newButton.click();
 	}
-	public void enterUserType(String value)
-	{
-		PageUtility pageutility=new PageUtility(driver);
-		pageutility.select_ByVisibleText(userDropDown, value);
+
+	public void enterUserType(String userTypevalue) {
+		PageUtility pageutility = new PageUtility(driver);
+		pageutility.select_ByVisibleText(userDropDown, userTypevalue);
 	}
-	public void enterDate(String date)
-	{
+
+	public void enterDate(String date) {
 		dateSelector.clear();
 		dateSelector.sendKeys(date);
 	}
-	
-	public void selectCategory(String category)
-	{
-		PageUtility pageutility=new PageUtility(driver);
+
+	public void selectCategory(String category) {
+		PageUtility pageutility = new PageUtility(driver);
 		pageutility.select_ByVisibleText(categoryDropDown, category);
-	
+
 	}
-	public void selectOrderID(String orderNum)
-	{
-		PageUtility pageutility=new PageUtility(driver);
+
+	public void selectOrderID(String orderNum) {
+		PageUtility pageutility = new PageUtility(driver);
 		pageutility.select_ByVisibleText(orderIdDropDown, orderNum);
 	}
-	public void selectPurchaseID(String purchaseNum)
-	{
-		PageUtility pageutility=new PageUtility(driver);
+
+	public void selectPurchaseID(String purchaseNum) {
+		PageUtility pageutility = new PageUtility(driver);
 		pageutility.select_ByVisibleText(purchaseIdDropDown, purchaseNum);
 	}
-	public void selectExpensetype(String expenseType)
-	{
-		PageUtility pageutility=new PageUtility(driver);
+
+	public void selectExpensetype(String expenseType) {
+		PageUtility pageutility = new PageUtility(driver);
 		pageutility.select_ByVisibleText(expenseTypeDropDown, expenseType);
 	}
-	
-	public void enterAmount(String amountValue)
-	{
+
+	public void enterAmount(String amountValue) {
 		amount.sendKeys(amountValue);
 	}
-	public void enterReamrks(String remarkValue)
-	{
+
+	public void enterRemarks(String remarkValue) {
 		remark.sendKeys(remarkValue);
 	}
-	
-	public void chooseFileToUpload()
-	{
-		chooseFile.click();
-		chooseFile.sendKeys("C:\\Users\\Tony joseph\\OneDrive\\Desktop\\Selenium files\\Expensereport.jfif");
+
+	public void chooseFileToUpload(String imageName) {
+
+		ImageUpload imageupload = new ImageUpload();
+		imageupload.imageFileUpload(imageName, chooseFile);
+
 	}
-	
+
+	public void clickOnSaveButton() {
+		PageUtility pageutility = new PageUtility(driver);
+		pageutility.scrollAndClick(saveButton);
+
+	}
+
+	public String expenseCreationSuccessMessage() {
+		WaitUtility waitutility = new WaitUtility(driver);
+		waitutility.waitforElementToBeVisible(alertCloseIcon, 30);
+		return expenseRecordCreateMessage.getText();
+	}
+
+	public String addExpense(String userType, String date, String category, String orderId, String purchaseId,
+			String expenseType, String amountValue, String remarkValue, String imageName) {
+		clickOnManageExpenseMenu();
+		newButtonClick();
+		enterUserType(userType);
+		enterDate(date);
+		selectCategory(category);
+		selectOrderID(orderId);
+		selectPurchaseID(purchaseId);
+		selectExpensetype(expenseType);
+		enterAmount(amountValue);
+		enterRemarks(remarkValue);
+		chooseFileToUpload(imageName);
+		clickOnSaveButton();
+		return expenseCreationSuccessMessage();
+
+	}
+
+	public boolean clickOnCancelButton() {
+		PageUtility pageutility = new PageUtility(driver);
+		WaitUtility waitutility = new WaitUtility(driver);
+		GeneralUtility generalutility = new GeneralUtility();
+		clickOnManageExpenseMenu();
+		newButtonClick();
+		pageutility.scrollAndClick(cancelButton);
+		waitutility.waitforElementToBeInVisible(saveButton, 30);
+		return generalutility.is_Displayed(saveButton);
+	}
 
 }

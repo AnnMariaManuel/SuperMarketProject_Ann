@@ -16,14 +16,5 @@ public class SampleTest extends Base {
 
 }
 	
-	@Test(dataProvider = "Login Credentials" ,dataProviderClass = Constants.class)
-	public void loginUserCheck(String username , String password )
-	{
-		//loginpage=new LoginPage(driver);
-		//loginpage.Login(username, password); 
-	     
-		
-		System.out.println(username);
-		System.out.println(password);
-	}
+	
 }

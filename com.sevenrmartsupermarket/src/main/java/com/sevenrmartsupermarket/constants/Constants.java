@@ -25,7 +25,7 @@ public class Constants {
 	public static String editUserNameSuccessMessage="User Updated Successfully";
 	public static String createUserSuccessMessage="User Created Successfully";
 	
-	                                /**DataProvoders**/
+	                                /**DataProviders**/
 	
 	@DataProvider(name="Login Credentials")
 	public Object[][] userLoginData()

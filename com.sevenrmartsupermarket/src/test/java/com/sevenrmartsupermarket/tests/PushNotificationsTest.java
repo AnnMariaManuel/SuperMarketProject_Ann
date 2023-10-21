@@ -17,7 +17,7 @@ public class PushNotificationsTest extends Base
 	ExcelReader excelreader=new ExcelReader();
 	
 	@Test(groups = "Sanity Test",priority = 1)
-	public void verifyPushNotificationSuccessMessage()
+	public void verifySendPushNotification()
 	{
 		loginpage=new LoginPage(driver);
 		pushnotificationpage=new PushNotificationsPage(driver);
@@ -25,6 +25,7 @@ public class PushNotificationsTest extends Base
 		pushnotificationpage.clickOnPushNotification();
 		excelreader.setExcelFile("NotificationsData", "Notification");
 	    pushnotificationpage.sendPushNotification(excelreader.getCellData(0, 0), excelreader.getCellData(0, 1));
+	    Assert.assertTrue(pushnotificationpage.sendPushNotificationSuccessMessage().contains("Message send successfully"));
 	}
 	
 	@Test(priority = 2)

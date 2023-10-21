@@ -66,8 +66,8 @@ public class Base
 		driver.get(url);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WaitUtility.IMPLICIT_WAIT));//defined in waitutilityclass
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(WaitUtility.PAGE_LOAD_WAIT));//defined in waitutilityclass
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WaitUtility.IMPLICIT_WAIT));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(WaitUtility.PAGE_LOAD_WAIT));
 	}
     @Parameters("browser")
 	@BeforeMethod(enabled=false,alwaysRun = true)
@@ -94,6 +94,6 @@ public class Base
 		{
 			screenshot.takeScreenShot(driver, itestresult.getName());  //itestresult.getName() is used to get test case name 
 		}
-		//driver.quit();
+		 //driver.quit();
 	}
 }
