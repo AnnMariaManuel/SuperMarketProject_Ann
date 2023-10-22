@@ -8,16 +8,12 @@
 		<groups>
 			<run>
 				<include name="Sanity Test">
-
 				</include>
 			</run>
-
 		</groups>
-
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
 			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
 		</classes>
-
 	</test>
 </suite>

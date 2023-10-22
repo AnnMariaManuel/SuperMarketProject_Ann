@@ -7,24 +7,22 @@
 	<test name="Executing in Chrome">
 		<parameter name="browser" value="chrome"></parameter>
 		<classes>
-			<class name="com.sevenrmartsupermarket.tests.LoginTest"></class>
-			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
 		</classes>
 	</test>
 
 	<test name="Executing in FireFox">
 		<parameter name="browser" value="firefox"></parameter>
 		<classes>
-			<class name="com.sevenrmartsupermarket.tests.LoginTest"></class>
-			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
+
 		</classes>
 	</test>
 
 	<test name="Executing in Edge">
 		<parameter name="browser" value="edge"></parameter>
 		<classes>
-			<class name="com.sevenrmartsupermarket.tests.LoginTest"></class>
-			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
 		</classes>
 	</test>
 

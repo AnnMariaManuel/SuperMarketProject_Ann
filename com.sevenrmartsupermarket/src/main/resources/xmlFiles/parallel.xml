@@ -13,7 +13,7 @@
 
 	<test name="Sanity Execution">
 		<classes>
-			<class name="com.sevenrmartsupermarket.tests.HomeTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.ManageExpenseTest"></class>
 			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
 		</classes>
 	</test>

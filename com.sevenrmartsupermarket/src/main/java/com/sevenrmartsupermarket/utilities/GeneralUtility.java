@@ -9,14 +9,12 @@ import org.openqa.selenium.WebElement;
 
 import com.github.javafaker.Faker;
 
-
-
 public class GeneralUtility
 
 {
-	static Faker faker=new Faker();
-	public static String getTimeStamp()
-	{
+	static Faker faker = new Faker();
+
+	public static String getTimeStamp() {
 		return new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss").format(new Date());
 	}
 
@@ -53,23 +51,21 @@ public class GeneralUtility
 		String data = element.getText();
 		return data.contains(expectedText);
 	}
-	
-	public static String getRandomFullName()
-	{
+
+	public static String getRandomFullName() {
 		return faker.name().fullName();
 	}
-	public static String getRandomFirstName()
-	{
+
+	public static String getRandomFirstName() {
 		return faker.name().firstName();
 	}
-	public static String getRandomStreetAddress()
-	{
+
+	public static String getRandomStreetAddress() {
 		return faker.address().streetAddress();
 	}
-	public static String getRandomBloodGroup()
-	{
+
+	public static String getRandomBloodGroup() {
 		return faker.name().bloodGroup();
 	}
-	
-	
+
 }

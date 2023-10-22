@@ -26,7 +26,7 @@ public class PageUtility
 	}
 
 	public void select_ByVisibleText(WebElement element, String text) {
-		
+
 		Select select = new Select(element);
 		select.selectByVisibleText(text);
 	}
@@ -41,7 +41,7 @@ public class PageUtility
 	}
 
 	public void jsScrollintoView(WebElement element) {
-		
+
 		js.executeScript("arguments[0].scrollIntoView();", element);
 
 	}
@@ -50,74 +50,55 @@ public class PageUtility
 		Actions action = new Actions(driver);
 		action.contextClick(element).build().perform();
 	}
-	
-	public void elementDoubleClick(WebElement element)
-	{
+
+	public void elementDoubleClick(WebElement element) {
 		Actions action = new Actions(driver);
 		action.doubleClick(element).build().perform();
 	}
-	
-	public void elementsDragandDrop(WebElement element1,WebElement element2)
-	{
+
+	public void elementsDragandDrop(WebElement element1, WebElement element2) {
 		Actions action = new Actions(driver);
 		action.dragAndDrop(element1, element2);
 	}
-	
-	public void alertAccept()
-	{
+
+	public void alertAccept() {
 		driver.switchTo().alert().accept();
 	}
-	
-	public void alertDismiss()
-	{
+
+	public void alertDismiss() {
 		driver.switchTo().alert().dismiss();
 	}
-	
-	public String getAlertText()
-	{
+
+	public String getAlertText() {
 		return driver.switchTo().alert().getText();
 	}
-	
-	public void switchToWindow()
-	{
-		String parentWindow=driver.getWindowHandle();
-		Set<String>childWindows=driver.getWindowHandles();
-		
-		for(String item:childWindows)
-		{
-			if(!parentWindow.equals(item))
-			{
+
+	public void switchToWindow() {
+		String parentWindow = driver.getWindowHandle();
+		Set<String> childWindows = driver.getWindowHandles();
+
+		for (String item : childWindows) {
+			if (!parentWindow.equals(item)) {
 				driver.switchTo().window(item);
 			}
 		}
 	}
-	
-	public void scrollAndClick(WebElement element)
-	{
-		int y=0;
-		while(!isClicked(element))
-		{
+
+	public void scrollAndClick(WebElement element) {
+		int y = 0;
+		while (!isClicked(element)) {
 			js.executeScript("window.scrollBy(0," + y + ")");
-			y=y+5;
+			y = y + 5;
 		}
-		
+
 	}
-	
-	public boolean isClicked(WebElement element)
-	{
-		//if click not happend it will go to catch block 
-		try
-		{
+
+	public boolean isClicked(WebElement element) {
+		try {
 			element.click();
 			return true;
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			return false;
 		}
 	}
-	}
-	
-	
-
-
+}

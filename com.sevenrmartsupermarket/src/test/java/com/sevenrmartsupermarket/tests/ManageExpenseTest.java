@@ -15,7 +15,7 @@ public class ManageExpenseTest extends Base {
 	@Test(priority = 1)
 	public void verifyAddExpenses() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		manageexpensepage = new ManageExpensePage(driver);
 		String actualSuccessMessage = manageexpensepage.addExpense("Admin(Admin)", "22-10-2024", "abc", "7", "8",
 				"Debit Cash", "200", "Adding expense test", "SampleImage");
@@ -25,7 +25,7 @@ public class ManageExpenseTest extends Base {
 	@Test(priority = 2)
 	public void verifyCancel() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		manageexpensepage = new ManageExpensePage(driver);
 
 		Assert.assertFalse(manageexpensepage.clickOnCancelButton(), "Cancel button is not working as expected");

@@ -4,7 +4,6 @@
 	<listeners>
 		<listener class-name="com.sevenrmartsupermarket.listners.ExtentReporter"></listener>
 	</listeners>
-
 	<test name="Health check Login">
 		<classes>
 			<class name="com.sevenrmartsupermarket.tests.LoginTest">
@@ -12,22 +11,17 @@
 					<include name="verifyLoginFunctionality"></include>
 				</methods>
 			</class>
-
 		</classes>
 	</test>
-
 	<test name="Health check AdminUser">
 		<classes>
-
 			<class name="com.sevenrmartsupermarket.tests.AdminUserTest">
 				<methods>
 					<include name="verifyAdminUserCreation"></include>
 				</methods>
 			</class>
-
 		</classes>
 	</test>
-	
 	<test name="Health check AddExpense">
 		<classes>
 
@@ -36,12 +30,8 @@
 					<include name="verifyAddExpenses"></include>
 				</methods>
 			</class>
-
 		</classes>
 	</test>
-	
-
-
 </suite>
 
 

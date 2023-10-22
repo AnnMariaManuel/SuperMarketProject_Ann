@@ -17,37 +17,37 @@ public class ManageExpensePage
 	LoginPage loginpage;
 
 	@FindBy(xpath = "//ul[@class='nav nav-pills nav-sidebar flex-column']//li[4]")
-	WebElement manageExpenseExpand;
+	private WebElement manageExpenseExpand;
 	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-expense']")
-	WebElement manageExpenseMenu;
+	private WebElement manageExpenseMenu;
 	@FindBy(xpath = "//div[@class='col-sm-12']//a[1]")
-	WebElement newButton;
+	private WebElement newButton;
 	@FindBy(id = "user_id")
-	WebElement userDropDown;
+	private WebElement userDropDown;
 	@FindBy(id = "ex_date")
-	WebElement dateSelector;
+	private WebElement dateSelector;
 	@FindBy(id = "ex_cat")
-	WebElement categoryDropDown;
+	private WebElement categoryDropDown;
 	@FindBy(id = "order_id")
-	WebElement orderIdDropDown;
+	private WebElement orderIdDropDown;
 	@FindBy(id = "purchase_id")
-	WebElement purchaseIdDropDown;
+	private WebElement purchaseIdDropDown;
 	@FindBy(id = "ex_type")
-	WebElement expenseTypeDropDown;
+	private WebElement expenseTypeDropDown;
 	@FindBy(id = "amount")
-	WebElement amount;
+	private WebElement amount;
 	@FindBy(name = "remarks")
-	WebElement remark;
+	private WebElement remark;
 	@FindBy(xpath = "//input[@type='file']")
-	WebElement chooseFile;
+	private WebElement chooseFile;
 	@FindBy(xpath = "//button[@type='submit']")
-	WebElement saveButton;
+	private WebElement saveButton;
 	@FindBy(xpath = "//div[@class='card-footer']//a")
-	WebElement cancelButton;
+	private WebElement cancelButton;
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
-	WebElement expenseRecordCreateMessage;
+	private WebElement expenseRecordCreateMessage;
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']//button")
-	WebElement alertCloseIcon;
+	private WebElement alertCloseIcon;
 
 	public ManageExpensePage(WebDriver driver) {
 		this.driver = driver;

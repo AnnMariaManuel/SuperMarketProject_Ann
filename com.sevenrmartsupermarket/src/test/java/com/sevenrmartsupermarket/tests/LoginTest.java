@@ -20,7 +20,7 @@ public class LoginTest extends Base {
 	public void verifyLoginFunctionality() {
 		loginpage = new LoginPage(driver);
 		homepage = new HomePage(driver);
-		loginpage.Login();
+		loginpage.login();
 		String actualProfileName = homepage.getProfileName();
 		String expectedProfileName = "Admin";
 		Assert.assertEquals(actualProfileName, expectedProfileName,
@@ -30,7 +30,8 @@ public class LoginTest extends Base {
 	@Test
 	public void verifyInvalidLoginErrorMessage() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login("admin", "admin");
+		loginpage.login("admin", "yiueyrw");
+		Assert.assertTrue(loginpage.invalidLoginMessage().contains("Invalid Username/Password"),"Test case failed");
 
 	}
 
@@ -41,7 +42,7 @@ public class LoginTest extends Base {
 		excelreader.setExcelFile("LoginData", "Login Credentials");
 		String userName = excelreader.getCellData(0, 0);
 		String passWord = excelreader.getCellData(0, 1);
-		loginpage.Login(userName, passWord);
+		loginpage.login(userName, passWord);
 		Assert.assertEquals(homepage.getProfileName(), "Emma", "Names not matching ,  user profile not launched");
 
 	}
@@ -49,7 +50,9 @@ public class LoginTest extends Base {
 	@Test(dataProvider = "Login Credentials", dataProviderClass = Constants.class)
 	public void loginUserCheck(String username, String password) {
 		loginpage = new LoginPage(driver);
-		loginpage.Login(username, password);
+		homepage = new HomePage(driver);
+		loginpage.login(username, password);
+		Assert.assertEquals(homepage.getProfileName(),username,"Testcase Failed");
 
 	}
 

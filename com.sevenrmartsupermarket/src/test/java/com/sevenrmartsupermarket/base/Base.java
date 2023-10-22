@@ -73,7 +73,7 @@ public class Base
 	@BeforeMethod(enabled=false,alwaysRun = true)
 	public void launchBrowser(String browser)
 	{
-		String url=properties.getProperty("url");//to read data from property file
+		String url=properties.getProperty("url");
 		initialize(browser, url);
 		
 	}

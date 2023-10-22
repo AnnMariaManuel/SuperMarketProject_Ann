@@ -146,7 +146,7 @@ public class AdminUsersPage {
 		}
 	}
 
-	public String activateuser(String personName) {
+	public String activateUser(String personName) {
 		pageutility = new PageUtility(driver);
 		int index = 0;
 		generalutility = new GeneralUtility();
@@ -176,7 +176,7 @@ public class AdminUsersPage {
 
 	}
 
-	public void editUserClick(String personName) {
+	public void editUserButtonClick(String personName) {
 
 		pageutility = new PageUtility(driver);
 		int index = 0;
@@ -291,7 +291,7 @@ public class AdminUsersPage {
 	}
 
 	public boolean adminUsersReset(String userName) {
-		editUserClick(userName);
+		editUserButtonClick(userName);
 		clickEditResetButton();
 		return usernameedit.isDisplayed();
 	}

@@ -10,28 +10,26 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.sevenrmartsupermarket.utilities.GeneralUtility;
 
-public class HomePage 
-
+public class HomePage
 
 {
-	GeneralUtility generalutility=new GeneralUtility();
-	
+
 	WebDriver driver;
-	Properties properties = new Properties(); 
+
+	GeneralUtility generalutility = new GeneralUtility();
+	Properties properties = new Properties();
 	FileInputStream ip;
-	
-	@FindBy(xpath="//a[@class='d-block']")
-	WebElement profileName;
-	
-	public HomePage(WebDriver driver)
-	{
-		this.driver=driver;
+
+	@FindBy(xpath = "//a[@class='d-block']")
+	private WebElement profileName;
+
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	public String getProfileName()
-	{
-		return generalutility.getTextOfElement(profileName); 
-		 
+
+	public String getProfileName() {
+		return generalutility.getTextOfElement(profileName);
+
 	}
 }

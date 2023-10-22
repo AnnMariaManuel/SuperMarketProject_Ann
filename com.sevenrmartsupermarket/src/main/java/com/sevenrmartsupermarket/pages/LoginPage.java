@@ -9,19 +9,24 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sevenrmartsupermarket.constants.Constants;
+import com.sevenrmartsupermarket.utilities.WaitUtility;
 
 public class LoginPage {
 
 	WebDriver driver;
-	Properties properties = new Properties(); // Properties is a class in java
+	Properties properties = new Properties();
 	FileInputStream ip;
-	
-	@FindBy(xpath=" //input[@name='username']")
-	private WebElement userNameField;       //encapsulation to make all elements private 
-	@FindBy(xpath="//input[@name='password']")
+
+	@FindBy(xpath = " //input[@name='username']")
+	private WebElement userNameField;
+	@FindBy(xpath = "//input[@name='password']")
 	private WebElement passWordField;
-	@FindBy(xpath="//button[@type='submit']")
+	@FindBy(xpath = "//button[@type='submit']")
 	private WebElement sigInButton;
+	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+	private WebElement invalidUserLoginAlert;
+	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']//button")
+	private WebElement alertCloseIcon;
 
 	public LoginPage(WebDriver driver) {
 
@@ -30,41 +35,42 @@ public class LoginPage {
 
 		try {
 			ip = new FileInputStream(Constants.CONFIG_FILE_PATH);
-			properties.load(ip); // to read the config.properties file
+			properties.load(ip);
 		} catch (Exception e) {
-			e.printStackTrace();// whole exception definition will come in console
+			e.printStackTrace();
 			System.out.println("File not found!!");
 		}
 	}
-	
-	public void enterUserName(String userName)
-	{
+
+	public void enterUserName(String userName) {
 		userNameField.sendKeys(userName);
 	}
-	
-	public void enterPassWord(String passWord)
-	{
+
+	public void enterPassWord(String passWord) {
 		passWordField.sendKeys(passWord);
 	}
-	
-	public void clickOnSignInButton()
-	{
+
+	public void clickOnSignInButton() {
 		sigInButton.click();
 	}
 
-	public void Login()
-	{
-		String username=properties.getProperty("username");
-		String password=properties.getProperty("password");
+	public void login() {
+		String username = properties.getProperty("username");
+		String password = properties.getProperty("password");
 		enterUserName(username);
 		enterPassWord(password);
 		clickOnSignInButton();
 	}
-	
-	public void Login(String username, String password)
-	{
+
+	public void login(String username, String password) {
 		enterUserName(username);
 		enterPassWord(password);
 		clickOnSignInButton();
+	}
+
+	public String invalidLoginMessage() {
+		WaitUtility waitutility = new WaitUtility(driver);
+		waitutility.waitforElementToBeVisible(alertCloseIcon, 10l);
+		return invalidUserLoginAlert.getText();
 	}
 }

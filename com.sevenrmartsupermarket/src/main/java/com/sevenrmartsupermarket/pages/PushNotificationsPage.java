@@ -12,17 +12,17 @@ public class PushNotificationsPage {
 	WebDriver driver;
 
 	@FindBy(xpath = "//p[contains(text(),'Push Notifications')]")
-	WebElement pushnotificationmenu;
+	private WebElement pushnotificationmenu;
 	@FindBy(id = "title")
-	WebElement titlefield;
+	private WebElement titlefield;
 	@FindBy(id = "description")
-	WebElement descriptionfield;
+	private WebElement descriptionfield;
 	@FindBy(xpath = "//button[@name='create']")
-	WebElement sendButton;
+	private WebElement sendButton;
 	@FindBy(xpath = "//a[contains(text(),'Reset')]")
-	WebElement resetButton;
+	private WebElement resetButton;
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
-	WebElement successAlertmessage;
+	private WebElement successAlertmessage;
 
 	public PushNotificationsPage(WebDriver driver) {
 		this.driver = driver;
@@ -68,7 +68,7 @@ public class PushNotificationsPage {
 		resetButton.click();
 		String titlePlaceholder = titlefield.getAttribute("placeholder");
 		String descriptionPlaceholder = descriptionfield.getAttribute("placeholder");
-        String actualResult;
+		String actualResult;
 
 		if ((titlePlaceholder.equals("Enter Title")) && (descriptionPlaceholder.equals("Enter Description"))) {
 			actualResult = "Reset Successfull";

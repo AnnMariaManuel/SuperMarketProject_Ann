@@ -20,24 +20,23 @@ public class AdminUserTest extends Base {
 	PageUtility pageutility;
 	SoftAssert softassert = new SoftAssert();
 
-	@Test(groups="Regression Test",priority = 1)
+	@Test(groups = "Regression Test", priority = 1, retryAnalyzer = RetryAnalyser.class)
 	public void verifyAdminUserCreation() {
 		adminuserspage = new AdminUsersPage(driver);
 		loginpage = new LoginPage(driver);
 		pageutility = new PageUtility(driver);
-		loginpage.Login();
+		loginpage.login();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
 		adminuserspage.createAdminUser(excelreader.getCellData(3, 0), excelreader.getCellData(3, 1),
 				excelreader.getCellData(3, 2));
-		
 		Assert.assertTrue(adminuserspage.userCreationMessage(), "User creation message is not correct ");
 
 	}
 
-	@Test(groups = "Smoke Test",priority = 2)
+	@Test(groups = "Smoke Test", priority = 2)
 	public void verifyUserDeactivation() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
@@ -50,14 +49,14 @@ public class AdminUserTest extends Base {
 
 	}
 
-	@Test(groups ="Smoke Test",priority = 3 )
+	@Test(groups = "Smoke Test", priority = 3)
 	public void verifyUserActivation() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
-		String ActualStatus = adminuserspage.activateuser(excelreader.getCellData(3, 0));
+		String ActualStatus = adminuserspage.activateUser(excelreader.getCellData(3, 0));
 		if (ActualStatus.equals("User already Active ")) {
 			Assert.assertFalse(true, " User is already Active, Cant Activate again !! ");
 		} else if (ActualStatus.equals("Active")) {
@@ -66,14 +65,14 @@ public class AdminUserTest extends Base {
 
 	}
 
-	@Test(groups = "Smoke Test",priority = 4)
+	@Test(groups = "Smoke Test", priority = 4)
 	public void verifyEditUserName() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
-		adminuserspage.editUserClick(excelreader.getCellData(3, 0));
+		adminuserspage.editUserButtonClick(excelreader.getCellData(3, 0));
 		adminuserspage.editUserName("Sooraj Menon");
 		softassert.assertTrue(
 				adminuserspage.editUserNameSuccessMessage().contains(Constants.editUserNameSuccessMessage),
@@ -81,15 +80,15 @@ public class AdminUserTest extends Base {
 		adminuserspage.alertClose();
 		boolean isUserPresent = adminuserspage.searchUser("Sooraj Menon");
 		softassert.assertTrue(isUserPresent, "Edited username not found , Edit function failed");
-		adminuserspage.editUserClick("Sooraj Menon");
+		adminuserspage.editUserButtonClick("Sooraj Menon");
 		adminuserspage.editUserName(excelreader.getCellData(3, 0));
 		softassert.assertAll();
 	}
 
-	@Test(groups = "Regression Test",priority = 5)
+	@Test(groups = {"Regression Test","Sanity Test"}, priority = 5)
 	public void verifyUserSearch() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
@@ -98,31 +97,29 @@ public class AdminUserTest extends Base {
 
 	}
 
-	@Test(groups = {"Sanity Test","Regression Test"},priority = 6)
+	@Test(groups =  "Regression Test" , priority = 6)
 	public void verifyDeleteUser() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		excelreader.setExcelFile("AdminUsers", "Admindata");
-		softassert.assertTrue(adminuserspage.deleteUser(excelreader.getCellData(3, 0)).contains("User Deleted Successfully"),
+		softassert.assertTrue(
+				adminuserspage.deleteUser(excelreader.getCellData(3, 0)).contains("User Deleted Successfully"),
 				"Deletion message not correct");
 		boolean isUserPresent = adminuserspage.searchUser(excelreader.getCellData(3, 0));
 		softassert.assertFalse(isUserPresent);
 		softassert.assertAll();
 	}
-	
+
 	@Test(priority = 7)
-	public void verifyReset()
-	{
+	public void verifyReset() {
 		loginpage = new LoginPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
 		adminuserspage.adminUsersReset("Anne");
-		Assert.assertFalse(adminuserspage.adminUsersReset("Anne"),"Page not Reset");
+		Assert.assertFalse(adminuserspage.adminUsersReset("Anne"), "Page not Reset");
 	}
-	
-	
 
 }

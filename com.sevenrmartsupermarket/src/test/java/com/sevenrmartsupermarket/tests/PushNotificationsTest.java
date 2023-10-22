@@ -21,19 +21,19 @@ public class PushNotificationsTest extends Base
 	{
 		loginpage=new LoginPage(driver);
 		pushnotificationpage=new PushNotificationsPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		pushnotificationpage.clickOnPushNotification();
 		excelreader.setExcelFile("NotificationsData", "Notification");
 	    pushnotificationpage.sendPushNotification(excelreader.getCellData(0, 0), excelreader.getCellData(0, 1));
 	    Assert.assertTrue(pushnotificationpage.sendPushNotificationSuccessMessage().contains("Message send successfully"));
 	}
 	
-	@Test(priority = 2)
+	@Test(groups="Sanity Test",priority = 2)
 	public void verifyPushNotificationReset()
 	{
 		loginpage=new LoginPage(driver);
 		pushnotificationpage=new PushNotificationsPage(driver);
-		loginpage.Login();
+		loginpage.login();
 		String message=pushnotificationpage.restPushNotifications("Message Alert !!!1", "This is a sample push notification !!!!!!");
 		Assert.assertTrue(message.equals("Reset Successfull"),"Reset Failed !!!");
 	}
