@@ -27,6 +27,19 @@
 
 		</classes>
 	</test>
+	
+	<test name="Health check AddExpense">
+		<classes>
+
+			<class name="com.sevenrmartsupermarket.tests.ManageExpenseTest">
+				<methods>
+					<include name="verifyAddExpenses"></include>
+				</methods>
+			</class>
+
+		</classes>
+	</test>
+	
 
 
 </suite>

@@ -24,21 +24,21 @@ public class Base
 {
 
 	public WebDriver driver;
-	Properties properties=new Properties(); //Properties is a class in java
+	Properties properties=new Properties(); 
 	FileInputStream ip;
 	
-	/** constructor for initalizing config file **/
+	
 	
 	public Base()
 	{
 		try
 		{
 		ip=new FileInputStream(Constants.CONFIG_FILE_PATH);
-		properties.load(ip); //to read the config.properties file
+		properties.load(ip); 
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();//whole exception definition will come in console
+			e.printStackTrace();
 			System.out.println("File not found ");
 		}
 	}
@@ -81,19 +81,19 @@ public class Base
     @BeforeMethod(enabled = true,alwaysRun = true)
 	public void launchBrowser()
 	{
-		String url=properties.getProperty("url");//to read data from property file
+		String url=properties.getProperty("url");
 		String browser=properties.getProperty("browser");
 		initialize(browser, url);
 		
 	}
-	@AfterMethod(alwaysRun = true) //this will be run irrespective of group mentioned in suite 
-	public void terminateSession(ITestResult itestresult)//testNG listener to check if a test case is pass or fail; 
+	@AfterMethod(alwaysRun = true) 
+	public void terminateSession(ITestResult itestresult)
 	{
 		ScreenShot screenshot=new ScreenShot();
 		if(itestresult.getStatus()==ITestResult.FAILURE)
 		{
-			screenshot.takeScreenShot(driver, itestresult.getName());  //itestresult.getName() is used to get test case name 
+			screenshot.takeScreenShot(driver, itestresult.getName());
 		}
-		 //driver.quit();
+		 driver.quit();
 	}
 }
