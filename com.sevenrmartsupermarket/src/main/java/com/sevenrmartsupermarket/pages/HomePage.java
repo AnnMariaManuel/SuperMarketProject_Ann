@@ -17,7 +17,7 @@ public class HomePage
 	GeneralUtility generalutility=new GeneralUtility();
 	
 	WebDriver driver;
-	Properties properties = new Properties(); // Properties is a class in java
+	Properties properties = new Properties(); 
 	FileInputStream ip;
 	
 	@FindBy(xpath="//a[@class='d-block']")
@@ -31,7 +31,7 @@ public class HomePage
 	
 	public String getProfileName()
 	{
-		return generalutility.getTextOfElement(profileName); //returns the text of profilename
+		return generalutility.getTextOfElement(profileName); 
 		 
 	}
 }
