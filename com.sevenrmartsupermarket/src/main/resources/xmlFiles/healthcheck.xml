@@ -18,6 +18,7 @@
 			<class name="com.sevenrmartsupermarket.tests.AdminUserTest">
 				<methods>
 					<include name="verifyAdminUserCreation"></include>
+					<include name="verifyDeleteUser"></include>
 				</methods>
 			</class>
 		</classes>
