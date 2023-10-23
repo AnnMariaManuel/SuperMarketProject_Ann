@@ -118,8 +118,8 @@ public class AdminUserTest extends Base {
 		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);
 		adminuserspage.clickOnAdminUsersMenu();
-		adminuserspage.adminUsersReset("Anne");
-		Assert.assertFalse(adminuserspage.adminUsersReset("Anne"), "Page not Reset");
+		adminuserspage.adminUsersReset("Annie");
+		Assert.assertFalse(adminuserspage.adminUsersReset("Annie"), "Page not Reset");
 	}
 
 }
