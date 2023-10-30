@@ -23,7 +23,7 @@ public class ManageExpenseTest extends Base {
 	}
 
 	@Test(priority = 2)
-	public void verifyCancel() {
+	public void verifyCancelButton() {
 		loginpage = new LoginPage(driver);
 		loginpage.login();
 		manageexpensepage = new ManageExpensePage(driver);

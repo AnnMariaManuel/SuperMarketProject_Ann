@@ -113,7 +113,7 @@ public class AdminUserTest extends Base {
 	}
 
 	@Test(priority = 7)
-	public void verifyReset() {
+	public void verifyUserReset() {
 		loginpage = new LoginPage(driver);
 		loginpage.login();
 		adminuserspage = new AdminUsersPage(driver);

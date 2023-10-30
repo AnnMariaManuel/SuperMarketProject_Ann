@@ -29,7 +29,7 @@ public class PushNotificationsTest extends Base
 	}
 	
 	@Test(groups="Sanity Test",priority = 2)
-	public void verifyPushNotificationReset()
+	public void verifyPushNotificationResetOption()
 	{
 		loginpage=new LoginPage(driver);
 		pushnotificationpage=new PushNotificationsPage(driver);
