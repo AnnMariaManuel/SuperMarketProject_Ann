@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -21,7 +22,6 @@ public class AdminUsersPage {
 	PageUtility pageutility;
 	GeneralUtility generalutility = new GeneralUtility();
 	WaitUtility waitutility;
-
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-users']//following-sibling::p")
 	private WebElement adminUserMenu;
 	@FindBy(xpath = "//div[@class='col-sm-12']/a[1]")
