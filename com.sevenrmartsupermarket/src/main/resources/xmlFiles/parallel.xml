@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="parallel execution" thread-count="5" parallel="tests">
+<suite name="parallel execution" thread-count="10" parallel="tests">
 	<listeners>
 		<listener class-name="com.sevenrmartsupermarket.listners.ExtentReporter"></listener>
 	</listeners>
@@ -24,6 +24,11 @@
 		</classes>
 	</test>
 
+<test name="Functional Execution">
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.PushNotificationsTest"></class>
+		</classes>
+	</test>
 
 </suite>
 
