@@ -20,13 +20,13 @@ public class Constants {
 	/** Expected results **/
 
 	/** Login Page **/
-	public static String expectedLoginErrorMessage = "UserName not valid ";
+	public static final String expectedLoginErrorMessage = "UserName not valid ";
 
 	/** AdminUserPage **/
-	public static String deactivatedUserSatus = "Inactive";
-	public static String activatedUserSatus = "Active";
-	public static String editUserNameSuccessMessage = "User Updated Successfully";
-	public static String createUserSuccessMessage = "User Created Successfully";
+	public static final String deactivatedUserSatus = "Inactive";
+	public static final String activatedUserSatus = "Active";
+	public static final String editUserNameSuccessMessage = "User Updated Successfully";
+	public static final String createUserSuccessMessage = "User Created Successfully";
 
 	/** DataProviders **/
 
